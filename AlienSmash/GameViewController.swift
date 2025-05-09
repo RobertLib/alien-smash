@@ -5,29 +5,28 @@
 //  Created by Robert Libšanský on 09.05.2025.
 //
 
-import UIKit
-import SpriteKit
 import GameplayKit
+import SpriteKit
+import UIKit
 
 class GameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         if let view = self.view as! SKView? {
-            // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
-                // Set the scale mode to scale to fit the window
-                scene.scaleMode = .aspectFill
-                
-                // Present the scene
-                view.presentScene(scene)
-            }
-            
+            let welcomeScene = WelcomeScene(size: CGSize(width: 750, height: 1334))
+            welcomeScene.scaleMode = .aspectFit
+            view.presentScene(welcomeScene)
+
             view.ignoresSiblingOrder = true
-            
-            view.showsFPS = true
-            view.showsNodeCount = true
+
+            #if DEBUG
+                view.showsFPS = true
+                view.showsNodeCount = true
+            #endif
+
+            view.preferredFramesPerSecond = 60
         }
     }
 
